@@ -14,13 +14,13 @@
 
 ### docker容器：
 
-​```
+```
 php 7.4.11 
 	ext: swoole4.5 redis5.0 
 mysql5.7
 	系统默认账户/密码: root/root
-	测试数据库/账户/密码: test/test/test	
-​```
+	测试数据库/账户/密码: test/test/test
+```
 
 
 ### 容器基本使用
