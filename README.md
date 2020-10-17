@@ -31,6 +31,12 @@
 	`vi /etc/sysctl.conf`
 	`net.ipv4.ip_forward=1`
 	`service network restart`
+9. 进入容器下载框架，启动
+	`docker exec -it php74 sh`
+	`composer create-project hyperf/hyperf-skeleton`
+	`php hyperf-skeleton/bin/hyperf.php start`
+10. 在宿主机启动框架
+	`docker exec -it php74 sh -c "php hyperf-skeleton/bin/hyperf.php start"`		
 
 
 ### docker容器：
