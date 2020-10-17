@@ -1,0 +1,28 @@
+version: "3.6"
+
+services: 
+    php74:
+        image: php74
+        build: ./php74
+        container_name: php74
+        volumes:
+            - "./php74/php.ini:/usr/local/etc/php/php.ini"
+            - "./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf" 
+            - "/mnt/hgfs/dev_share:/www"
+        network_mode: "host"   
+        privileged: true
+        restart: always
+    mysql57:
+        image: mysql57
+        build: ./mysql57
+        container_name: mysql57
+        volumes:
+            - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+        network_mode: "host"   
+        privileged: true   
+        restart: always
+        environment: 
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "test"
+            MYSQL_USER: "test"
+            MYSQL_PASSWORD: "test"      

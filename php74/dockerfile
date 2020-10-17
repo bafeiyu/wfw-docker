@@ -1,0 +1,27 @@
+FROM php:7.4.11-fpm-alpine3.12
+
+COPY ./lib/composer.phar /tmp/composer.phar
+COPY ./lib/redis-5.2.0.tgz /tmp/redis-5.2.0.tgz
+COPY ./lib/swoole-4.5.2.tgz /tmp/swoole-4.5.2.tgz
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add git wget openssl openssl-dev libstdc++ \
+    && cd /tmp \
+    && tar -zxvf redis-5.2.0.tgz \
+    && tar -zxvf swoole-4.5.2.tgz \
+    && docker-php-source extract \
+    && mv redis-5.2.0 /usr/src/php/ext/redis \
+    && mv swoole-4.5.2 /usr/src/php/ext/swoole \
+    && mv composer.phar /usr/local/bin/composer \
+    && chmod +x /usr/local/bin/composer \
+    && docker-php-ext-configure swoole --enable-openssl --enable-http2 \
+    && docker-php-ext-install redis swoole pdo_mysql \
+    && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+    && rm -rf redis-5.2.0.tgz swoole-4.5.2.tgz \
+    && docker-php-source delete \
+    && mkdir /www
+
+
+WORKDIR /www
+
+EXPOSE 9000
