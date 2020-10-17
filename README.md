@@ -11,6 +11,27 @@
 #### docker-compose version 1.26.2
 
 
+### 安装环境
+1. 安装虚拟机，破解
+2. 导入虚拟机镜像
+3. 创建共享文件目录
+4. 修改虚拟网络配置 
+	`vi /etc/sysconfig/network-scripts/ifcfg-ens32`
+	`IPADDR ip段.100`
+	`GATEWAY ip段.2`
+5. 重启网卡
+	`service network restart`
+6. 下载docker编排文件
+	`cd /www`
+	`git clone https://github.com/dinofei/wfw-docker.git docker`		
+7. 修改docker-compose.yml的挂在目录为本地创建的目录名称
+8. 安装容器
+	`docker-compose up -d`	
+	如果出现IPv4 forwarding is disabled. Networking will not work：
+	`vi /etc/sysctl.conf`
+	`net.ipv4.ip_forward=1`
+	`service network restart`
+
 
 ### docker容器：
 
