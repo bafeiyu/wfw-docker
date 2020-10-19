@@ -7,7 +7,7 @@ COPY ./lib/amqp-1.10.2.tgz /tmp/amqp-1.10.2.tgz
 COPY ./lib/rabbitmq-c-0.9.0-master.tar.gz /tmp/rabbitmq-c-0.9.0-master.tar.gz
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add git wget openssl openssl-dev libstdc++ cmake \
+    && apk add git wget openssl openssl-dev libstdc++ cmake make \
     && cd /tmp \
     && tar -zxvf redis-5.2.0.tgz \
     && tar -zxvf swoole-4.5.2.tgz \
