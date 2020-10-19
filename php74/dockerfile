@@ -12,7 +12,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && tar -zxvf redis-5.2.0.tgz \
     && tar -zxvf swoole-4.5.2.tgz \
     && tar -zxvf amqp-1.10.2.tgz \
-    && tar -zxvf rabbitmq-c-0.9.0-master \
+    && tar -zxvf rabbitmq-c-0.9.0-master.tar.gz \
     && cd rabbitmq-c-0.9.0-master \
     && make build \
     && cd build \
