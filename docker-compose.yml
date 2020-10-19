@@ -18,6 +18,7 @@ services:
         container_name: mysql57
         volumes:
             - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+            - "./mysql57/data:/var/lib/mysql"
         network_mode: "host"   
         privileged: true   
         restart: always
