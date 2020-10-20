@@ -26,4 +26,16 @@ services:
             MYSQL_ROOT_PASSWORD: "root"
             MYSQL_DATABASE: "test"
             MYSQL_USER: "test"
-            MYSQL_PASSWORD: "test"      
+            MYSQL_PASSWORD: "test" 
+    rabbitmq-node1:
+        image: rabbitmq-node1
+        build: ./rabbitmq
+        container_name: rabbitmq-node1
+        volumes:
+            - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
+            - "./rabbitmq/data:/var/lib/rabbitmq" 
+            - "/mnt/hgfs/dev_share:/www"
+        network_mode: "host" 
+        hostname: node1  
+        privileged: true
+        restart: always             
