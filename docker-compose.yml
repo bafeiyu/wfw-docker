@@ -34,7 +34,6 @@ services:
         volumes:
             - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
             - "./rabbitmq/data:/var/lib/rabbitmq" 
-            - "/mnt/hgfs/dev_share:/www"
         network_mode: "host" 
         hostname: node1  
         privileged: true
