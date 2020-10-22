@@ -13,8 +13,7 @@ services:
         privileged: true
         restart: always
     mysql57:
-        image: mysql57
-        build: ./mysql57
+        image: mysql:5.7.31
         container_name: mysql57
         volumes:
             - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
@@ -28,8 +27,7 @@ services:
             MYSQL_USER: "test"
             MYSQL_PASSWORD: "test" 
     rabbitmq-node1:
-        image: rabbitmq-node1
-        build: ./rabbitmq
+        image: rabbitmq:3.8-management-alpine
         container_name: rabbitmq-node1
         volumes:
             - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
@@ -40,8 +38,7 @@ services:
         restart: always
     # docker run --network host --rm pantsel/konga -c prepare -a postgres -u postgresql://konga:123123@192.168.109.100:5432/konga    
     konga:
-        image: konga
-        build: ./konga
+        image: pantsel/konga
         container_name: konga
         network_mode: "host"
         volumes: 
