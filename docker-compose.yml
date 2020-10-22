@@ -37,4 +37,20 @@ services:
         network_mode: "host" 
         hostname: node1  
         privileged: true
-        restart: always             
+        restart: always
+    konga:
+        image: konga
+        build: ./konga
+        container_name: konga
+        network_mode: "host"
+        privileged: true
+        restart: always
+        environment: 
+            TOKEN_SECRET: "yyb-konga"
+            DB_ADAPTER: "postgres"   
+            DB_HOST: "127.0.0.1"
+            DB_PORT: 5432
+            DB_USER: "kong" 
+            DB_PASSWORD: "123123"
+            DB_DATABASE: "kong" 
+            NODE_ENV: "production"              
