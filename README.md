@@ -47,6 +47,12 @@ php 7.4.11
 mysql5.7
 	系统默认账户/密码: root/root
 	测试数据库/账户/密码: test/test/test
+rabbitmq3.8
+	管理地址：http:ip:15762
+	账户/密码：guest/guest
+konga
+	管理地址：http:ip:1337
+	账户/密码：admin/admin123		
 ```
 
 
@@ -68,6 +74,14 @@ mysql5.7
 #### 在宿主机执行容器命令
 
 `docker exec -it container_name sh -c "your_shell_command"`
+
+#### 启动postgres数据库
+su -u pgsql -c "pg_ctl start -D /www/pgsql/data -l /www/pgsql/serverlog"
+
+#### 启动kong
+kong start
+
+
 
 
 
