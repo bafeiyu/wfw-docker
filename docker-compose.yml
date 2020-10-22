@@ -38,19 +38,22 @@ services:
         hostname: node1  
         privileged: true
         restart: always
+    # docker run --network host --rm pantsel/konga -c prepare -a postgres -u postgresql://konga:123123@192.168.109.100:5432/konga    
     konga:
         image: konga
         build: ./konga
         container_name: konga
         network_mode: "host"
+        volumes: 
+            - "./konga/lib/assets:/app/assets"
         privileged: true
         restart: always
         environment: 
             TOKEN_SECRET: "yyb-konga"
             DB_ADAPTER: "postgres"   
-            DB_HOST: "127.0.0.1"
+            DB_HOST: "192.168.109.100"
             DB_PORT: 5432
-            DB_USER: "kong" 
+            DB_USER: "konga" 
             DB_PASSWORD: "123123"
-            DB_DATABASE: "kong" 
+            DB_DATABASE: "konga" 
             NODE_ENV: "production"              
