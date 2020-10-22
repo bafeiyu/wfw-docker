@@ -50,9 +50,13 @@ mysql5.7
 rabbitmq3.8
 	管理地址：http:ip:15762
 	账户/密码：guest/guest
-konga
+konga2.1.4
 	管理地址：http:ip:1337
-	账户/密码：admin/admin123		
+	账户/密码：admin/admin123
+	配置文件：/etc/kong/kong.conf
+postgreps9.6
+	kong使用的数据库/账户/密码：kong/kong/123123			
+	konga使用的数据库/账户/密码：konga/konga/123123			
 ```
 
 
