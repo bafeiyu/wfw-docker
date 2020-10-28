@@ -13,45 +13,45 @@ services:
         network_mode: "host"  
         privileged: true
         restart: always
-    mysql57:
-        image: mysql:5.7.31
-        container_name: mysql57
-        volumes:
-            - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
-            - "./mysql57/data:/var/lib/mysql"
-        network_mode: "host"   
-        privileged: true   
-        restart: always
-        environment: 
-            MYSQL_ROOT_PASSWORD: "root"
-            MYSQL_DATABASE: "test"
-            MYSQL_USER: "test"
-            MYSQL_PASSWORD: "test" 
-    rabbitmq-node1:
-        image: rabbitmq:3.8-management-alpine
-        container_name: rabbitmq-node1
-        volumes:
-            - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
-            - "./rabbitmq/data:/var/lib/rabbitmq" 
-        network_mode: "host" 
-        hostname: node1  
-        privileged: true
-        restart: always
+    # mysql57:
+    #     image: mysql:5.7.31
+    #     container_name: mysql57
+    #     volumes:
+    #         - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+    #         - "./mysql57/data:/var/lib/mysql"
+    #     network_mode: "host"   
+    #     privileged: true   
+    #     restart: always
+    #     environment: 
+    #         MYSQL_ROOT_PASSWORD: "root"
+    #         MYSQL_DATABASE: "test"
+    #         MYSQL_USER: "test"
+    #         MYSQL_PASSWORD: "test" 
+    # rabbitmq-node1:
+    #     image: rabbitmq:3.8-management-alpine
+    #     container_name: rabbitmq-node1
+    #     volumes:
+    #         - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
+    #         - "./rabbitmq/data:/var/lib/rabbitmq" 
+    #     network_mode: "host" 
+    #     hostname: node1  
+    #     privileged: true
+    #     restart: always
     # docker run --network host --rm pantsel/konga -c prepare -a postgres -u postgresql://konga:123123@192.168.109.100:5432/konga    
-    konga:
-        image: pantsel/konga
-        container_name: konga
-        network_mode: "host"
-        volumes: 
-            - "./konga/lib/assets:/app/assets"
-        privileged: true
-        restart: always
-        environment: 
-            TOKEN_SECRET: "yyb-konga"
-            DB_ADAPTER: "postgres"   
-            DB_HOST: "192.168.109.100"
-            DB_PORT: 5432
-            DB_USER: "konga" 
-            DB_PASSWORD: "123123"
-            DB_DATABASE: "konga" 
-            NODE_ENV: "production"              
+    # konga:
+    #     image: pantsel/konga
+    #     container_name: konga
+    #     network_mode: "host"
+    #     volumes: 
+    #         - "./konga/lib/assets:/app/assets"
+    #     privileged: true
+    #     restart: always
+    #     environment: 
+    #         TOKEN_SECRET: "yyb-konga"
+    #         DB_ADAPTER: "postgres"   
+    #         DB_HOST: "192.168.109.100"
+    #         DB_PORT: 5432
+    #         DB_USER: "konga" 
+    #         DB_PASSWORD: "123123"
+    #         DB_DATABASE: "konga" 
+    #         NODE_ENV: "production"              
