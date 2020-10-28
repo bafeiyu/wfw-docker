@@ -6,8 +6,12 @@ COPY ./lib/swoole-4.5.2.tgz /tmp/swoole-4.5.2.tgz
 COPY ./lib/amqp-1.10.2.tgz /tmp/amqp-1.10.2.tgz
 COPY ./lib/rabbitmq-c-0.9.0-master.tar.gz /tmp/rabbitmq-c-0.9.0-master.tar.gz
 
+ENV  TIME_ZONE Asia/Shanghai
+
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add git wget openssl openssl-dev libstdc++ cmake build-base \
+    && apk add git wget openssl openssl-dev libstdc++ cmake build-base tzdata \
+    && echo "${TIME_ZONE}" > /etc/timezone \ 
+    && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime \ 
     && cd /tmp \
     && tar -zxvf redis-5.2.0.tgz \
     && tar -zxvf swoole-4.5.2.tgz \
