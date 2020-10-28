@@ -8,6 +8,7 @@ services:
         volumes:
             - "./php74/php.ini:/usr/local/etc/php/php.ini"
             - "./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf" 
+            - "./php74/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf" 
             - "/mnt/hgfs/dev_share:/www"
         network_mode: "host"   
         privileged: true
