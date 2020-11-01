@@ -39,33 +39,38 @@
 	`docker exec -it php74 sh -c "php hyperf-skeleton/bin/hyperf.php start"`		
 
 
-### docker容器：
+### 目录介绍：
 
 ```
-php:
-	php 7.4.11 
-		ext: swoole4.5 redis5.0 amqp 
-数据库: 
-	mysql5.7
-		系统默认账户/密码: root/root
-		测试数据库/账户/密码: test/test/test
-消息队列:		
-	rabbitmq3.8
-		管理地址：http:ip:15762
-		账户/密码：guest/guest
-网关:		
-	kong
-	konga2.1.4
-		管理地址：http:ip:1337
-		账户/密码：admin/admin123
-	postgreps9.6
-		kong使用的数据库/账户/密码：kong/kong/123123			
-		konga使用的数据库/账户/密码：konga/konga/123123	
-elk:
-	(待更新)
-素材:
-	架构分层
-	代码规范					
+容器:
+
+	php:
+		php 7.4.11 
+			ext: swoole4.5 redis5.0 amqp 
+	数据库: 
+		mysql5.7
+			系统默认账户/密码: root/root
+			测试数据库/账户/密码: test/test/test
+	消息队列:		
+		rabbitmq3.8
+			管理地址：http:ip:15762
+			账户/密码：guest/guest
+	网关:		
+		kong
+		konga2.1.4
+			管理地址：http:ip:1337
+			账户/密码：admin/admin123
+		postgreps9.6
+			kong使用的数据库/账户/密码：kong/kong/123123			
+			konga使用的数据库/账户/密码：konga/konga/123123	
+	elk:
+		(待更新)
+
+其他:
+
+	素材:
+		架构分层
+		代码规范					
 ```
 
 
