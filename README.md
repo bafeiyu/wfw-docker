@@ -93,12 +93,6 @@
 
 `docker exec -it container_name sh -c "your_shell_command"`
 
-#### 启动postgres数据库
-su -u pgsql -c "pg_ctl start -D /www/pgsql/data -l /www/pgsql/serverlog"
-
-#### 启动kong
-kong start
-
 
 
 
