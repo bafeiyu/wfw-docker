@@ -1,0 +1,28 @@
+version: "3.6"
+
+services: 
+    php74:
+        image: php74
+        build: ./php74
+        container_name: php74
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.160
+        ports: 
+            - "9000:9000"
+        volumes:
+            - "./php74/php.ini:/usr/local/etc/php/php.ini"
+            - "./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf" 
+            - "./php74/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf" 
+            - "/mnt/hgfs/dev_share:/www"
+        privileged: true
+        restart: always             
+
+networks: 
+    wfw:
+        driver: "bridge"
+        ipam: 
+            config: 
+                - subnet: 172.22.22.0/24
+
+

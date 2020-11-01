@@ -1,0 +1,30 @@
+version: "3.6"
+
+services: 
+    mysql57:
+        image: mysql:5.7.31
+        container_name: mysql57
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.180
+        ports: 
+            - "3306:3306"
+        volumes:
+            - "./mysql57/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+            - "./mysql57/data:/var/lib/mysql"
+        environment: 
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "test"
+            MYSQL_USER: "test"
+            MYSQL_PASSWORD: "test" 
+        privileged: true   
+        restart: always             
+
+networks: 
+    wfw:
+        driver: "bridge"
+        ipam: 
+            config: 
+                - subnet: 172.22.22.0/24
+
+
