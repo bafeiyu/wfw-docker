@@ -42,21 +42,30 @@
 ### docker容器：
 
 ```
-php 7.4.11 
-	ext: swoole4.5 redis5.0 
-mysql5.7
-	系统默认账户/密码: root/root
-	测试数据库/账户/密码: test/test/test
-rabbitmq3.8
-	管理地址：http:ip:15762
-	账户/密码：guest/guest
-konga2.1.4
-	管理地址：http:ip:1337
-	账户/密码：admin/admin123
-	配置文件：/etc/kong/kong.conf
-postgreps9.6
-	kong使用的数据库/账户/密码：kong/kong/123123			
-	konga使用的数据库/账户/密码：konga/konga/123123			
+php:
+	php 7.4.11 
+		ext: swoole4.5 redis5.0 amqp 
+数据库: 
+	mysql5.7
+		系统默认账户/密码: root/root
+		测试数据库/账户/密码: test/test/test
+消息队列:		
+	rabbitmq3.8
+		管理地址：http:ip:15762
+		账户/密码：guest/guest
+网关:		
+	kong
+	konga2.1.4
+		管理地址：http:ip:1337
+		账户/密码：admin/admin123
+	postgreps9.6
+		kong使用的数据库/账户/密码：kong/kong/123123			
+		konga使用的数据库/账户/密码：konga/konga/123123	
+elk:
+	(待更新)
+素材:
+	架构分层
+	代码规范					
 ```
 
 
