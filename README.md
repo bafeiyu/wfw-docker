@@ -47,6 +47,7 @@
 	php:
 		php 7.4.11 
 			ext: swoole4.5 redis5.0 amqp 
+		filebeat	
 	数据库: 
 		mysql5.7
 			系统默认账户/密码: root/root
@@ -64,7 +65,9 @@
 			kong使用的数据库/账户/密码：kong/kong/123123			
 			konga使用的数据库/账户/密码：konga/konga/123123	
 	elk:
-		(待更新)
+		elasticsearch
+		kibana
+		logstash
 
 其他:
 
