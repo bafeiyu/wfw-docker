@@ -1,0 +1,52 @@
+version: "3.6"
+
+services: 
+    # chmod 0777 -R elasticsearch_01/data
+    # grep vm.max_map_count /etc/sysctl.conf
+    # vm.max_map_count=262144
+    # sysctl -w vm.max_map_count=262144
+    es_01:
+        image: elasticsearch:7.6.2
+        container_name: es_01
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.10
+        ports: 
+            - "9200:9200"
+        environment:
+            - "ES_JAVA_OPTS=-Xms215m -Xmx215m"     
+        volumes: 
+            - "./elasticsearch_01/data:/usr/share/elasticsearch/data"
+            - "./elasticsearch_01/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml" 
+        privileged: true
+        restart: always             
+    kibana:
+        image: kibana:7.6.2
+        container_name: kibana
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.20
+        ports: 
+            - "5601:5601"
+        volumes: 
+            - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+        privileged: true
+        restart: always             
+    logstash:
+        image: logstash:7.6.2
+        container_name: logstash
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.21
+        ports:
+            - "5044:5044"
+        volumes: 
+            - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+            - ./logstash/logstash.yml:/usr/share/logstash/logstash.yml
+        privileged: true
+        restart: always                        
+
+networks: 
+    wfw:
+        name: "docker_wfw"
+        external: true

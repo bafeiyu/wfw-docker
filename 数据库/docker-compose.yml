@@ -22,9 +22,7 @@ services:
 
 networks: 
     wfw:
-        driver: "bridge"
-        ipam: 
-            config: 
-                - subnet: 172.22.22.0/24
+        name: "docker_wfw"
+        external: true
 
 
