@@ -1,0 +1,51 @@
+version: "3.6"
+
+services: 
+    php74:
+        image: php74
+        build: ./php74
+        container_name: php74
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.160
+        ports: 
+            - "9000:9000"
+            - "9501:9501"
+            - "9502:9502"
+            - "9503:9503"
+            - "9504:9504"
+            - "8001:8000"
+        volumes:
+            - "/etc/localtime:/etc/localtime"
+            - "./php74/php.ini:/usr/local/etc/php/php.ini"
+            - "./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf" 
+            - "./php74/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf" 
+            - "/mnt/hgfs/dev_share:/www"
+        privileged: true
+        restart: always             
+    rabbitmq-node1:
+        image: rabbitmq:3.8-management-alpine
+        container_name: rabbitmq-node1
+        networks: 
+            wfw:
+                ipv4_address: 172.22.22.150
+        ports: 
+            - "5672:5672"
+            - "15672:15672"
+        volumes:
+            - "/etc/localtime:/etc/localtime"
+            - "./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf"
+            - "./rabbitmq/data:/var/lib/rabbitmq" 
+        hostname: node1  
+        privileged: true
+        restart: always              
+
+networks: 
+    wfw:
+        name: "docker_wfw"
+        driver: "bridge"
+        ipam: 
+            config: 
+                - subnet: 172.22.22.0/24
+
+
