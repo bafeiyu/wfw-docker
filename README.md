@@ -49,6 +49,9 @@
 	rabbitmq3.8
 		管理地址：http:ip:15762
 		账户/密码：guest/guest
+	zookeeper
+	kafka
+	kafka-manager	
 
 其他:
 
