@@ -5,14 +5,18 @@ COPY ./lib/redis-5.2.0.tgz /tmp/redis-5.2.0.tgz
 COPY ./lib/swoole-4.5.2.tgz /tmp/swoole-4.5.2.tgz
 COPY ./lib/amqp-1.10.2.tgz /tmp/amqp-1.10.2.tgz
 COPY ./lib/rabbitmq-c-0.9.0-master.tar.gz /tmp/rabbitmq-c-0.9.0-master.tar.gz
+COPY ./lib/mongodb-1.12.0.tgz /tmp/mongodb-1.12.0.tgz
+COPY ./lib/yaml-2.2.2.tgz /tmp/yaml-2.2.2.tgz
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add git wget openssl openssl-dev libstdc++ cmake build-base \
+    && apk add git wget openssl openssl-dev libstdc++ cmake build-base yaml-dev autoconf \
     && cd /tmp \
     && tar -zxvf redis-5.2.0.tgz \
     && tar -zxvf swoole-4.5.2.tgz \
     && tar -zxvf amqp-1.10.2.tgz \
     && tar -zxvf rabbitmq-c-0.9.0-master.tar.gz \
+    && tar -zxvf mongodb-1.12.0.tgz \
+    && tar -zxvf yaml-2.2.2.tgz \
     && cd rabbitmq-c-0.9.0-master \
     && mkdir build \
     && cd build \
@@ -26,14 +30,16 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && mv redis-5.2.0 /usr/src/php/ext/redis \
     && mv swoole-4.5.2 /usr/src/php/ext/swoole \
     && mv amqp-1.10.2 /usr/src/php/ext/amqp \
+    && mv yaml-2.2.2 /usr/src/php/ext/yaml \
+    && mv mongodb-1.12.0 /usr/src/php/ext/mongodb \
     && mv composer.phar /usr/local/bin/composer \
     && chmod +x /usr/local/bin/composer \
     && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
     && docker-php-ext-configure swoole --enable-openssl --enable-http2 \
     && docker-php-ext-configure amqp --with-librabbitmq-dir=/usr/local/rabbitmq-c \
-    && docker-php-ext-install bcmath sockets redis swoole pdo_mysql amqp \
+    && docker-php-ext-install bcmath sockets redis swoole pdo_mysql amqp pcntl yaml mongodb \
     && mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
-    && rm -rf redis-5.2.0.tgz swoole-4.5.2.tgz amqp-1.10.2.tgz rabbitmq-c-0.9.0-master.tar.gz rabbitmq-c-0.9.0-master \
+    && rm -rf redis-5.2.0.tgz swoole-4.5.2.tgz amqp-1.10.2.tgz rabbitmq-c-0.9.0-master.tar.gz rabbitmq-c-0.9.0-master yaml-2.2.2.tgz mongodb-1.12.0.tgz \
     && docker-php-source delete \
     && mkdir /www
 
