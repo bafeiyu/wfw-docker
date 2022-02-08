@@ -1,0 +1,23 @@
+cluster.name: elasticsearch
+network.host: 0.0.0.0
+http.host: 0.0.0.0
+http.port: 9200
+node.name: es01
+node.data: true
+node.master: true
+
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs
+
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
+bootstrap.system_call_filter: false
+bootstrap.mlockall: true
+cluster.initial_master_nodes: ["es01"]
+
+discovery.zen.ping.multicast.enabled: false
+cluster.routing.allocation.allow_rebalance: always
+index.cache.field.type: soft
+index.number_of_shards: 1
+index.number_of_replicas: 0
