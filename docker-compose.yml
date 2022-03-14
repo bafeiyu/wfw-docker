@@ -17,7 +17,7 @@ services:
             - "./php80/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf"
             - "/mnt/hgfs/www:/www"
         privileged: true
-        restart: always
+        restart: "no"
     php74:
         image: php74
         build: ./php74
@@ -74,7 +74,7 @@ services:
         volumes:
             - ./zookeeper/data:/data
             - ./zookeeper/datalog:/datalog
-        restart: always
+        restart: "no"
     kafka:
         image: wurstmeister/kafka:2.13-2.7.0
         container_name: kafka
@@ -94,7 +94,7 @@ services:
             JMX_PORT: 1099
         volumes:
         - "./kafka/data/:/kafka"
-        restart: always
+        restart: "no"
     kafka-manager:
         image: kafkamanager/kafka-manager
         container_name: kafka-manager
@@ -106,7 +106,7 @@ services:
         environment:
             ZK_HOSTS: 192.168.5.128:2182
             TZ: CST-8
-        restart: always
+        restart: "no"
     mongo-db:
         image: mongo:latest
         container_name: mongo-db
@@ -155,7 +155,7 @@ services:
                 soft: -1
                 hard: -1
         privileged: true
-        restart: always
+        restart: "no"
     kibana:
         image: kibana:7.14.0
         container_name: kibana
@@ -167,7 +167,20 @@ services:
         depends_on:
             - elk
         privileged: true
+        restart: "no"
+    mysql-db:
+        image: mysql:8.0
+        container_name: mysql-db
+        command: --default-authentication-plugin=mysql_native_password
         restart: always
+        networks:
+            wfw:
+                ipv4_address: 172.68.68.161
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - "3306:3306"
+            - "8080:8080"
 networks:
     wfw:
         name: "docker_wfw"
